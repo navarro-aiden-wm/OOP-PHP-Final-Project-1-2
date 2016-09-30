@@ -1,3 +1,9 @@
+<body>
+<link href="styles.css" rel="stylesheet">
+
+<h1 align="center">My Simple Blog</h1>
+
+<div id="content">
 <?php
 /**
  * Created by PhpStorm.
@@ -12,7 +18,6 @@ $database->query('SELECT * FROM blog_post');
 $database->execute();
 $rows = $database->resultset();
 
-
 if(@$_POST['delete']){
     $delete_id = $_POST['delete_id'];
     $database->query('DELETE FROM blog_post WHERE id = :id');
@@ -22,14 +27,25 @@ if(@$_POST['delete']){
 
 
 
+
 ?>
 
-<h1>Posts</h1>
-<div>
-    <?php foreach($rows as $row) : ?>
-    <h3><?php echo $row['title']; ?></h3>
-    <p><?php echo $row['body']; ?></p>
+<h1 align="center">Posts</h1>
+    <a href="post.php"><p align="center">Posts</p></a>
+<div id="post">
+    <?php foreach($rows as $row) :
+
+    $database->query('SELECT name FROM tags LEFT JOIN (blog_post_tags) ON (tags.id = blog_post_tags.tag_id) WHERE blog_post_tags.blog_post_id = :inId');
+    $database->bind(':inId', $row['id']);
+    $tagName = $database->resultset();
+    ?>
+    <h2><?php echo $row['title']; ?></h2>
+    <p style="font-size: large;"><?php echo $row['body']; ?></p>
     <br />
+    <div id="info">
+        <p style="font-family: 'American Typewriter'">Posted By: <?php echo $row['author_id']; ?> Posted On: <?php echo $row['date_posted']; ?> Tags: <?php foreach($tagName as $name) echo $name['name'] . ", "; ?> etc...</p>
+    </div>
+    <div id="delete">
     <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
         <input type="hidden" name="delete_id" value="<?php echo $row['id']; ?>">
         <input type="submit" name="delete" value="Delete" />
@@ -37,3 +53,4 @@ if(@$_POST['delete']){
     </div>
 <?php endforeach; ?>
 </div>
+</body>

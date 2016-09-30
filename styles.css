@@ -1,3 +1,26 @@
-body{
-    background-image: 'http://v3wall.com/wallpaper/1440_900/1008/1440_900_201008130134342420934.jpg';
+body {
+    background-color: lightblue;
+}
+
+#content{
+    border: solid darkorange;
+    background-color: lightsalmon;
+    padding: 25px;
+}
+#post{
+    border: solid blue;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: lightblue;
+}
+#info{
+    background-color: lightgray;
+    border: solid lightgray;
+    height: 30px;
+}
+#delete{
+    padding-top: 15px;
+}
+#nav{
+    background-color: gray;
 }
