@@ -1,8 +1,13 @@
+<head>
+    <title>My Blog - Make Post</title>
+</head>
+
 <body>
 <link href="styles.css" rel="stylesheet">
 <h1 align="center">Add Post</h1>
-<a href="index1.php"><p align="center">Add Post</p></a>
+
 <div id="content">
+    <a href="index1.php"><p align="center">Posts</p></a>
     <?php
     /**
      * Created by PhpStorm.
@@ -11,14 +16,15 @@
      * Time: 4:17 PM
      */
     require 'databases.php';
+    require 'Tags.php';
 
 
-    $database = new BlogPost([$inId = null],[$inTitle = null],[$inPost = null],[$inAuthorId = null],[$inDatePosted = null]);
+    $database = new BlogPost([$inId = null], [$inTitle = null], [$inPost = null], [$inAuthorId = null], [$inDatePosted = null]);
 
     $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
 
-    if(@$post['update']){
+    if (@$post['update']) {
         $id = $post['id'];
         $title = $post['title'];
         $body = $post['body'];
@@ -31,7 +37,7 @@
         $database->execute();
     }
 
-    if(@$post['submit']) {
+    if (@$post['submit']) {
         $title = $post['title'];
         $body = $post['body'];
         $authorId = $post['author'];
@@ -49,25 +55,25 @@
     }
 
     ?>
-<form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+    <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
 
-    <label>Author Id (1-11)</label><br />
-    <input type="text" name="author" placeholder="Author..." /><br /><br />
+        <label>Author</label><br/>
+        <input type="text" name="author" placeholder="Author..."/><br/><br/>
 
-    <label>Title</label><br />
-    <input type="text" name="title" placeholder="Add a Title..." /><br /><br />
+        <label>Title</label><br/>
+        <input type="text" name="title" placeholder="Add a Title..."/><br/><br/>
 
-    <label>Date</label><br />
-    <input type="date" name="date" placeholder="date..." /><br /><br />
+        <label>Date</label><br/>
+        <input type="date" name="date" placeholder="date..."/><br/><br/>
 
-    <label>Tags</label><br />
-    <input type="text" name="tags" placeholder="tags..." /><br /><br />
+        <label>Tags</label><br/>
+        <input type="text" name="tags" placeholder="tags..."/><br/><br/>
 
-    <label>Body</label><br />
-    <textarea name="body"></textarea><br /><br />
-    <input type="submit" name="submit" value="Submit" />
+        <label>Body</label><br/>
+        <textarea name="body"></textarea><br/><br/>
+        <input type="submit" name="submit" value="Submit"/>
 
-</form>
+    </form>
 </div>
 </body>
 

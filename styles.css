@@ -2,25 +2,29 @@ body {
     background-color: lightblue;
 }
 
-#content{
+#content {
     border: solid darkorange;
     background-color: lightsalmon;
     padding: 25px;
 }
-#post{
+
+#post {
     border: solid blue;
     padding-left: 50px;
     padding-right: 50px;
     background-color: lightblue;
 }
-#info{
+
+#info {
     background-color: lightgray;
     border: solid lightgray;
     height: 30px;
 }
-#delete{
+
+#delete {
     padding-top: 15px;
 }
-#nav{
+
+#nav {
     background-color: gray;
 }

@@ -1,12 +1,13 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: session2
  * Date: 9/27/16
  * Time: 5:07 PM
  */
-
-class BlogPost{
+class BlogPost
+{
     private $host = 'localhost';
     private $user = 'root';
     private $pass = 'password';
@@ -22,27 +23,30 @@ class BlogPost{
     public $authorId;
     public $datePosted;
 
-    public function __construct($inId=null, $inTitle=null, $inPost=null,  $inAuthorId=null, $inDatePosted=null){
-        $dsn = 'mysql:host=' . $this->host . ';dbname='. $this->dbname;
+    public function __construct($inId = null, $inTitle = null, $inPost = null, $inAuthorId = null, $inDatePosted = null)
+    {
+        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
         $options = array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 
-        try{
+        try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
-        } catch(PDOException $e){
+        } catch (PDOException $e) {
             $this->error = $e->getMessage();
             echo $this->error;
         }
     }
 
-    public function query($query){
+    public function query($query)
+    {
         $this->stmt = $this->dbh->prepare($query);
     }
 
-    public function bind($param, $value, $type = null){
+    public function bind($param, $value, $type = null)
+    {
 
-        if(is_null($type)){
+        if (is_null($type)) {
 
-            switch(true){
+            switch (true) {
 
                 case is_int($value):
                     $type = PDO::PARAM_INT;
@@ -61,18 +65,22 @@ class BlogPost{
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    public function execute(){
+    public function execute()
+    {
         return $this->stmt->execute();
     }
 
-    public function lastInsertId(){
+    public function lastInsertId()
+    {
         return $this->dbh->lastInsertId();
 
     }
 
-    public function resultset(){
+    public function resultset()
+    {
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
+
 ?>
