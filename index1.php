@@ -47,7 +47,7 @@
             <br/>
             <div id="info">
                 <p style="font-family: 'American Typewriter'">Posted By: <?php echo $row['author_id']; ?> Posted
-                    On: <?php echo $row['date_posted']; ?> Tags: <?php echo $row['tags']; ?> , etc...</p>
+                    On: <?php echo $row['date_posted']; ?> Tags: <?php echo $row['tags']; ?></p>
             </div>
             <div id="delete">
                 <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
