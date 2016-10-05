@@ -15,7 +15,7 @@ class Tags extends BlogPost
         $posts = parent::resultset();
 
         if (is_array($posts) && count($posts)) {
-            foreach ($posts as $post) {
+            foreach ($posts as &$post) {
                 $tags = [];
 
                 $sql = 'SELECT tag_id FROM blog_post_tags bpt LEFT JOIN tags t ON bpt.tag_id = t.id WHERE bpt.blog_post_id = :blogid';

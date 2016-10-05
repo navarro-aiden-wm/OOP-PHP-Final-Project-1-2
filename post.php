@@ -42,7 +42,10 @@
         $body = $post['body'];
         $authorId = $post['author'];
         $datePosted = $post['date'];
+        $name = $post['name'];
 
+        $database->query('INSERT INTO tags (name) VALUE (:name)');
+        $database->bind(':name', $name);
         $database->query('INSERT INTO blog_post (title, body, author_id, date_posted) VALUES(:title, :body, :authorId, :datePosted)');
         $database->bind(':title', $title);
         $database->bind(':body', $body);
@@ -67,7 +70,7 @@
         <input type="date" name="date" placeholder="date..."/><br/><br/>
 
         <label>Tags</label><br/>
-        <input type="text" name="tags" placeholder="tags..."/><br/><br/>
+        <input type="text" name="name" placeholder="tags..."/><br/><br/>
 
         <label>Body</label><br/>
         <textarea name="body"></textarea><br/><br/>
@@ -76,5 +79,3 @@
     </form>
 </div>
 </body>
-
-
